@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Avenue HVAC — Heating, Cooling &amp; Air Quality | Cambridge · Kitchener · Waterloo</title>
+<meta name="description" content="Avenue HVAC installs and services furnaces, air conditioners, cold-climate heat pumps, hot water systems, HRVs, air purifiers, humidifiers and custom ductwork across Cambridge, Kitchener, Waterloo and surrounding Ontario. Call 519-222-5766." />
+<meta name="theme-color" content="#0a1728" />
+<link rel="icon" href="logo.png" />
+<link rel="apple-touch-icon" href="logo.png" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Avenue HVAC — Residential &amp; Commercial Climate Systems" />
+<meta property="og:description" content="Furnaces, AC, cold-climate heat pumps, hot water, HRV, air purification, humidifiers and custom ductwork. Cambridge · Kitchener · Waterloo. Call 519-222-5766." />
+<meta property="og:image" content="logo.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Sans:wght@400..700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy:    { DEFAULT: '#142f4c', 900: '#0a1728', 800: '#0d2138', 700: '#142f4c', 600: '#1d4269' },
+          slate:   { 950: '#0f172a' },
+          ember:   { DEFAULT: '#cd4c24', light: '#f2703a', glow: '#ff8b4a' },
+          glacier: { DEFAULT: '#64aed5', light: '#a8d8ef', deep: '#2f7fa8' },
+          paper:   { DEFAULT: '#f4f7f9', warm: '#fbfcfd' }
+        },
+        fontFamily: {
+          display: ['Archivo', 'sans-serif'],
+          body:    ['"Instrument Sans"', 'sans-serif'],
+          mono:    ['"JetBrains Mono"', 'monospace']
+        }
+      }
+    }
+  };
+</script>
+
+<style>
+  :root{
+    --navy-900:#0a1728; --navy-800:#0d2138; --navy:#142f4c;
+    --slate-950:#0f172a;
+    --ember:#cd4c24; --ember-light:#f2703a;
+    --glacier:#64aed5; --glacier-light:#a8d8ef;
+    --paper:#f4f7f9;
+    --edge: rgba(168,216,239,.14);
+  }
+
+  html{ scroll-behavior:smooth; scroll-padding-top:104px; }
+  body{
+    font-family:'Instrument Sans',system-ui,sans-serif;
+    background:var(--navy-900); color:#e8eef4;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+
+  /* ── Display type: Archivo pushed WIDE, like highway signage ───────── */
+  .disp{ font-family:'Archivo',sans-serif; font-variation-settings:'wdth' 112,'wght' 800;
+         letter-spacing:-.022em; line-height:.94; }
+  .disp-x{ font-variation-settings:'wdth' 125,'wght' 900; }
+  .disp-m{ font-family:'Archivo',sans-serif; font-variation-settings:'wdth' 108,'wght' 700; letter-spacing:-.012em; }
+  .tech{ font-family:'JetBrains Mono',monospace; text-transform:uppercase;
+         letter-spacing:.22em; font-size:.66rem; font-weight:500; }
+
+  /* ── Grain + vignette atmosphere ───────────────────────────────────── */
+  .grain::after{
+    content:''; position:fixed; inset:-50%; pointer-events:none; z-index:60; opacity:.035;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation:grainShift 7s steps(6) infinite;
+  }
+  @keyframes grainShift{
+    0%,100%{transform:translate(0,0)} 16%{transform:translate(-4%,-3%)} 33%{transform:translate(3%,-5%)}
+    50%{transform:translate(-3%,4%)} 66%{transform:translate(4%,3%)} 83%{transform:translate(-2%,-4%)}
+  }
+
+  /* ── Thermal ambient blooms (airflow / climate balance) ────────────── */
+  .bloom{ position:absolute; border-radius:50%; filter:blur(90px); pointer-events:none; will-change:transform; }
+  .bloom-ember{ background:radial-gradient(circle,rgba(205,76,36,.55),transparent 68%); animation:drift1 19s ease-in-out infinite; }
+  .bloom-glacier{ background:radial-gradient(circle,rgba(100,174,213,.5),transparent 68%); animation:drift2 23s ease-in-out infinite; }
+  @keyframes drift1{ 0%,100%{transform:translate3d(0,0,0) scale(1)} 50%{transform:translate3d(5%,-7%,0) scale(1.14)} }
+  @keyframes drift2{ 0%,100%{transform:translate3d(0,0,0) scale(1.08)} 50%{transform:translate3d(-6%,6%,0) scale(.94)} }
+
+  /* ── Scroll progress: a thermometer that fills ember → glacier ─────── */
+  #progress{ position:fixed; top:0; left:0; height:2px; width:100%; z-index:70;
+    background:linear-gradient(90deg,var(--ember),#e0913f,var(--glacier-light),var(--glacier));
+    transform:scaleX(0); transform-origin:0 50%; }
+
+  /* ── Glass ─────────────────────────────────────────────────────────── */
+  .glass{ background:rgba(10,23,40,.62); backdrop-filter:blur(18px) saturate(150%);
+          -webkit-backdrop-filter:blur(18px) saturate(150%); border:1px solid var(--edge); }
+  .glass-lite{ background:rgba(255,255,255,.05); backdrop-filter:blur(14px);
+          -webkit-backdrop-filter:blur(14px); border:1px solid rgba(255,255,255,.1); }
+
+  /* ── Scroll reveals ────────────────────────────────────────────────── */
+  [data-reveal]{ opacity:0; transform:translate3d(0,26px,0); filter:blur(6px);
+    transition:opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1), filter .8s ease;
+    transition-delay:var(--d,0ms); }
+  [data-reveal].is-in{ opacity:1; transform:none; filter:none; }
+
+  /* ── Brand mark: lift the logo off the dark glass so it reads clearly ─ */
+  .brandmark{
+    /* The mark's road element is brand navy, which vanishes against the dark
+       header. A solid light tile puts it back on the white it was drawn for. */
+    background:linear-gradient(160deg,#ffffff 0%,#eef4f8 55%,#dfeaf2 100%);
+    border:1px solid rgba(255,255,255,.5);
+    box-shadow:0 6px 20px -6px rgba(0,0,0,.55), 0 0 26px -8px rgba(100,174,213,.5),
+               inset 0 1px 0 rgba(255,255,255,.9);
+  }
+  .brandmark img{ filter:saturate(1.04); }
+
+  /* ── Nav underline sweep ───────────────────────────────────────────── */
+  .navlink{ position:relative; }
+  .navlink::after{ content:''; position:absolute; left:0; bottom:-5px; height:1.5px; width:100%;
+    background:linear-gradient(90deg,var(--ember),var(--glacier)); transform:scaleX(0);
+    transform-origin:100% 50%; transition:transform .42s cubic-bezier(.16,1,.3,1); }
+  .navlink:hover::after,.navlink:focus-visible::after{ transform:scaleX(1); transform-origin:0 50%; }
+
+  /* ── Buttons ───────────────────────────────────────────────────────── */
+  .btn{ position:relative; overflow:hidden; isolation:isolate;
+    transition:transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s ease, border-color .3s ease; }
+  .btn:hover{ transform:translateY(-3px); }
+  .btn:active{ transform:translateY(-1px); }
+  .btn-ember{ background:linear-gradient(135deg,var(--ember),#e0602f);
+    box-shadow:0 10px 30px -10px rgba(205,76,36,.75), inset 0 1px 0 rgba(255,255,255,.22); }
+  .btn-ember:hover{ box-shadow:0 20px 44px -12px rgba(205,76,36,.9), inset 0 1px 0 rgba(255,255,255,.3); }
+  .btn::before{ content:''; position:absolute; inset:0; z-index:-1; opacity:0;
+    background:linear-gradient(120deg,transparent 20%,rgba(255,255,255,.3),transparent 80%);
+    transform:translateX(-110%); transition:opacity .1s; }
+  .btn:hover::before{ opacity:1; animation:sheen .85s cubic-bezier(.16,1,.3,1); }
+  @keyframes sheen{ to{ transform:translateX(110%);} }
+
+  /* ── Thermal balance meter (hero signature) ────────────────────────── */
+  .therm-track{ position:relative; height:3px; border-radius:99px;
+    background:linear-gradient(90deg,var(--ember) 0%,#c9713c 28%,#8fa3b5 50%,#7fbcdd 72%,var(--glacier) 100%); }
+  .therm-knob{ position:absolute; top:50%; width:11px; height:11px; border-radius:50%;
+    background:#fff; box-shadow:0 0 0 3px rgba(255,255,255,.16), 0 0 18px 3px rgba(168,216,239,.6);
+    transform:translate(-50%,-50%); animation:swing 9s cubic-bezier(.45,0,.55,1) infinite; }
+  @keyframes swing{ 0%,100%{ left:14%; box-shadow:0 0 0 3px rgba(205,76,36,.2),0 0 18px 4px rgba(242,112,58,.6);}
+                    50%{ left:86%; box-shadow:0 0 0 3px rgba(100,174,213,.22),0 0 18px 4px rgba(168,216,239,.6);} }
+
+  /* ── Service cards ─────────────────────────────────────────────────── */
+  .svc{ position:relative; overflow:hidden; isolation:isolate;
+    transition:transform .48s cubic-bezier(.16,1,.3,1), box-shadow .48s cubic-bezier(.16,1,.3,1),
+               border-color .4s ease, opacity .3s ease, filter .3s ease; }
+  .svc::before{ content:''; position:absolute; inset:0; z-index:-1; opacity:0; transition:opacity .5s ease;
+    background:radial-gradient(120% 90% at 50% 0%, var(--acc-soft), transparent 62%); }
+  .svc:hover{ transform:translateY(-8px); box-shadow:0 30px 60px -28px rgba(10,23,40,.45); border-color:var(--acc-30); }
+  .svc:hover::before{ opacity:1; }
+  .svc .rail{ position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--acc);
+    transform:scaleY(0); transform-origin:0 0; transition:transform .55s cubic-bezier(.16,1,.3,1); }
+  .svc:hover .rail{ transform:scaleY(1); }
+  .svc .ico{ transition:transform .55s cubic-bezier(.16,1,.3,1), background-color .4s ease; }
+  .svc:hover .ico{ transform:translateY(-3px) rotate(-6deg) scale(1.07); }
+  .svc .num{ transition:color .45s ease, transform .45s cubic-bezier(.16,1,.3,1); }
+  .svc:hover .num{ color:var(--acc); transform:translateX(3px); }
+  .svc.is-out{ opacity:0; transform:scale(.95) translateY(10px); filter:blur(4px); pointer-events:none; }
+
+  /* icon kinetics per service family */
+  .svc:hover .kin-heat{ animation:flick 1.5s ease-in-out infinite; }
+  @keyframes flick{ 0%,100%{transform:scale(1) rotate(0)} 40%{transform:scale(1.1) rotate(4deg)} 70%{transform:scale(.96) rotate(-3deg)} }
+  .svc:hover .kin-cool{ animation:spin 7s linear infinite; }
+  @keyframes spin{ to{ transform:rotate(360deg);} }
+  .svc:hover .kin-air{ animation:puff 2s ease-in-out infinite; }
+  @keyframes puff{ 0%,100%{transform:translateX(0)} 50%{transform:translateX(3px)} }
+  .svc:hover .kin-water{ animation:bob 1.8s ease-in-out infinite; }
+  @keyframes bob{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-3px)} }
+
+  /* ── Filter chips ──────────────────────────────────────────────────── */
+  .chip{ transition:all .35s cubic-bezier(.16,1,.3,1); }
+  .chip[aria-pressed="true"]{ background:var(--navy); color:#fff; border-color:var(--navy);
+    box-shadow:0 10px 24px -12px rgba(20,47,76,.85); }
+
+  /* ── Coverage badges ───────────────────────────────────────────────── */
+  .badge{ transition:transform .4s cubic-bezier(.16,1,.3,1), background-color .4s, border-color .4s, color .4s; }
+  .badge:hover{ transform:translateY(-3px); background:rgba(100,174,213,.14); border-color:rgba(100,174,213,.5); color:#fff; }
+
+  /* ── Marquee airflow line ──────────────────────────────────────────── */
+  .flow line, .flow path{ stroke-dasharray:10 14; animation:flow 2.6s linear infinite; }
+  @keyframes flow{ to{ stroke-dashoffset:-48; } }
+
+  /* ── Mobile quick contact bar ──────────────────────────────────────── */
+  #quickbar{ transform:translateY(140%); transition:transform .55s cubic-bezier(.16,1,.3,1); }
+  #quickbar.up{ transform:translateY(0); }
+
+  /* ── Copy feedback ─────────────────────────────────────────────────── */
+  .copied{ background:rgba(100,174,213,.18)!important; border-color:rgba(100,174,213,.6)!important; color:#fff!important; }
+
+  /* ── Big outlined section ordinal ──────────────────────────────────── */
+  .ordinal{ font-family:'Archivo',sans-serif; font-variation-settings:'wdth' 125,'wght' 900;
+    -webkit-text-stroke:1.5px currentColor; color:transparent; line-height:.8; user-select:none; }
+
+  ::selection{ background:var(--ember); color:#fff; }
+  :focus-visible{ outline:2px solid var(--glacier); outline-offset:3px; border-radius:4px; }
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{ animation-duration:.001ms!important; animation-iteration-count:1!important;
+      transition-duration:.001ms!important; scroll-behavior:auto!important; }
+    [data-reveal]{ opacity:1; transform:none; filter:none; }
+  }
+</style>
+</head>
+
+<body class="grain">
+<div id="progress" aria-hidden="true"></div>
+
+<a href="#services" class="sr-only focus:not-sr-only focus:absolute focus:z-[80] focus:top-3 focus:left-3 focus:bg-white focus:text-navy-900 focus:px-4 focus:py-2 focus:rounded-lg focus:font-semibold">Skip to services</a>
+
+<!-- ═══════════════ HEADER ═══════════════ -->
+<header id="site-header" class="fixed top-0 inset-x-0 z-50 transition-all duration-500">
+  <div class="glass border-x-0 border-t-0">
+    <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
+      <div class="flex items-center justify-between gap-4 h-[74px] lg:h-[96px] transition-all duration-500" id="hdr-inner">
+
+        <a href="#top" class="flex items-center gap-3 shrink-0 group" aria-label="Avenue HVAC — home">
+          <span class="brandmark grid place-items-center shrink-0 rounded-xl p-1.5 transition-transform duration-500 group-hover:scale-105">
+            <img src="mark.png" alt="Avenue HVAC" width="246" height="238"
+                 class="h-[42px] lg:h-[58px] w-auto" />
+          </span>
+          <span class="flex flex-col leading-none">
+            <span class="disp text-[17px] lg:text-[21px] text-white">AVENUE HVAC</span>
+            <span class="tech text-glacier-light/60 mt-1.5 text-[9px] lg:text-[10px]">Climate Systems</span>
+          </span>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-9" aria-label="Primary">
+          <a href="#services" class="navlink text-[14.5px] font-medium text-slate-200 hover:text-white transition-colors">Services</a>
+          <a href="#coverage" class="navlink text-[14.5px] font-medium text-slate-200 hover:text-white transition-colors">Coverage</a>
+          <a href="#book"     class="navlink text-[14.5px] font-medium text-slate-200 hover:text-white transition-colors">Book</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <!-- Regional coverage badge -->
+          <div class="hidden xl:flex items-center gap-2.5 rounded-full border border-white/12 bg-white/[.04] pl-3 pr-4 py-2">
+            <span class="relative flex h-1.5 w-1.5">
+              <span class="absolute inline-flex h-full w-full rounded-full bg-glacier opacity-75 animate-ping"></span>
+              <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-glacier"></span>
+            </span>
+            <span class="tech text-glacier-light/85 text-[10px]">Cambridge&nbsp;•&nbsp;Kitchener&nbsp;•&nbsp;Waterloo</span>
+          </div>
+
+          <a href="tel:5192225766"
+             class="btn btn-ember hidden sm:inline-flex items-center gap-2.5 rounded-full px-5 py-3 text-white text-[14px] font-semibold tracking-tight"
+             aria-label="Call Avenue HVAC at 519-222-5766">
+            <i data-lucide="phone-call" class="w-4 h-4"></i>
+            <span class="font-mono text-[13.5px] tracking-tight">519-222-5766</span>
+          </a>
+
+          <button id="menu-btn" type="button"
+                  class="lg:hidden grid place-items-center w-11 h-11 rounded-xl border border-white/12 bg-white/[.04] text-white"
+                  aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+            <i data-lucide="menu" class="w-5 h-5" id="menu-icon"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile drawer -->
+  <div id="mobile-menu" class="lg:hidden overflow-hidden max-h-0 transition-[max-height] duration-500 ease-out glass border-x-0 border-t-0">
+    <nav class="px-6 py-6 flex flex-col gap-1" aria-label="Mobile">
+      <a href="#services" class="mob-link disp-m text-[26px] text-white/90 py-2.5 border-b border-white/8">Services</a>
+      <a href="#coverage" class="mob-link disp-m text-[26px] text-white/90 py-2.5 border-b border-white/8">Coverage</a>
+      <a href="#book"     class="mob-link disp-m text-[26px] text-white/90 py-2.5 border-b border-white/8">Book Service</a>
+      <div class="grid grid-cols-2 gap-3 pt-5">
+        <a href="tel:5192225766" class="btn btn-ember flex items-center justify-center gap-2 rounded-xl py-3.5 text-white font-semibold text-sm">
+          <i data-lucide="phone" class="w-4 h-4"></i> Call
+        </a>
+        <a href="mailto:avenuehvac@gmail.com" class="flex items-center justify-center gap-2 rounded-xl py-3.5 border border-glacier/40 bg-glacier/10 text-glacier-light font-semibold text-sm">
+          <i data-lucide="mail" class="w-4 h-4"></i> Email
+        </a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="relative min-h-[100svh] flex items-center overflow-hidden pt-[124px] pb-24 lg:pb-32">
+
+  <!-- Thermal split sky -->
+  <div class="absolute inset-0 -z-30" style="background:
+      radial-gradient(120% 80% at 8% 6%, rgba(205,76,36,.30), transparent 55%),
+      radial-gradient(110% 78% at 94% 10%, rgba(100,174,213,.26), transparent 56%),
+      linear-gradient(180deg,#0a1728 0%,#0d2138 42%,#102a45 68%,#0a1728 100%);"></div>
+  <div class="bloom bloom-ember   -z-20 w-[46vw] h-[46vw] max-w-[620px] max-h-[620px] -left-[10vw] -top-[8vw]"></div>
+  <div class="bloom bloom-glacier -z-20 w-[50vw] h-[50vw] max-w-[680px] max-h-[680px] -right-[12vw] top-[2vw]"></div>
+
+  <!-- THE AVENUE: perspective road receding to the vanishing point -->
+  <canvas id="avenue" class="absolute inset-x-0 bottom-0 -z-10 w-full h-[62%] lg:h-[68%]" aria-hidden="true"></canvas>
+  <!-- horizon haze -->
+  <div class="absolute inset-x-0 bottom-0 -z-10 h-[62%] lg:h-[68%] pointer-events-none"
+       style="background:linear-gradient(180deg,rgba(10,23,40,.85) 0%,rgba(10,23,40,.3) 9%,rgba(10,23,40,0) 20%,rgba(10,23,40,0) 62%,rgba(10,23,40,.62) 100%);"></div>
+
+  <div class="relative mx-auto max-w-[1400px] w-full px-4 sm:px-6 lg:px-10">
+    <div class="grid lg:grid-cols-12 gap-y-14 gap-x-10 items-end">
+
+      <!-- Headline column -->
+      <div class="lg:col-span-7 xl:col-span-7">
+        <div class="flex items-center gap-3 mb-7" data-reveal>
+          <span class="h-px w-10 bg-gradient-to-r from-ember to-transparent"></span>
+          <span class="tech text-ember-light">Residential &amp; Commercial</span>
+        </div>
+
+        <h1 class="disp text-white text-[clamp(2.5rem,6.2vw,5.1rem)]">
+          <span class="block" data-reveal style="--d:80ms">EVERY HOME</span>
+          <span class="block" data-reveal style="--d:170ms">HAS A</span>
+          <span class="block disp-x" data-reveal style="--d:260ms">
+            <span class="bg-gradient-to-r from-ember-light via-white to-glacier bg-clip-text text-transparent">COMFORT</span>
+          </span>
+          <span class="block" data-reveal style="--d:350ms">ZONE.</span>
+        </h1>
+
+        <p class="mt-7 max-w-xl text-[16px] lg:text-[18px] leading-relaxed text-slate-300/90" data-reveal style="--d:380ms">
+          Avenue HVAC engineers, installs and services complete climate systems across
+          <span class="text-white font-semibold">Cambridge, Kitchener and Waterloo</span> — heating, cooling,
+          ventilation, hot water and air quality, under one roof.
+        </p>
+
+        <!-- Dual primary CTAs -->
+        <div class="mt-9 flex flex-col sm:flex-row gap-3.5" data-reveal style="--d:460ms">
+          <a href="tel:5192225766"
+             class="btn btn-ember group inline-flex items-center justify-center gap-3 rounded-full px-8 py-[18px] text-white font-bold tracking-tight text-[16px]">
+            <i data-lucide="phone-call" class="w-[18px] h-[18px]"></i>
+            <span>Call 519-222-5766</span>
+            <i data-lucide="arrow-up-right" class="w-4 h-4 opacity-70 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></i>
+          </a>
+          <a href="mailto:avenuehvac@gmail.com?subject=Service%20Request%20—%20Avenue%20HVAC"
+             class="btn glass-lite group inline-flex items-center justify-center gap-3 rounded-full px-8 py-[18px] text-white font-bold tracking-tight text-[16px] hover:border-glacier/55">
+            <i data-lucide="mail" class="w-[18px] h-[18px] text-glacier-light"></i>
+            <span>Email Avenue HVAC</span>
+          </a>
+        </div>
+
+        <!-- Thermal balance meter -->
+        <div class="mt-10 max-w-md" data-reveal style="--d:540ms">
+          <div class="flex items-center justify-between mb-3">
+            <span class="tech text-ember-light flex items-center gap-1.5"><i data-lucide="flame" class="w-3 h-3"></i>Heat</span>
+            <span class="tech text-slate-400">Climate Balance</span>
+            <span class="tech text-glacier-light flex items-center gap-1.5">Cool<i data-lucide="snowflake" class="w-3 h-3"></i></span>
+          </div>
+          <div class="therm-track"><span class="therm-knob"></span></div>
+        </div>
+      </div>
+
+      <!-- Service pillars column -->
+      <div class="lg:col-span-5 xl:col-span-4 xl:col-start-9">
+        <div class="glass rounded-2xl p-6 lg:p-7" data-reveal style="--d:620ms">
+          <div class="flex items-center justify-between pb-5 mb-5 border-b border-white/10">
+            <span class="tech text-slate-400">Core Capability</span>
+            <i data-lucide="gauge" class="w-4 h-4 text-glacier/70"></i>
+          </div>
+          <ul class="space-y-5">
+            <li class="flex items-start gap-4 group/p">
+              <span class="mt-0.5 grid place-items-center w-9 h-9 rounded-lg bg-ember/14 border border-ember/25 shrink-0">
+                <i data-lucide="flame" class="w-[18px] h-[18px] text-ember-light"></i></span>
+              <div><p class="text-white font-semibold text-[15px] leading-tight">Heating</p>
+                <p class="text-slate-400 text-[13.5px] mt-1 leading-snug">Furnaces &amp; cold-climate heat pumps</p></div>
+            </li>
+            <li class="flex items-start gap-4">
+              <span class="mt-0.5 grid place-items-center w-9 h-9 rounded-lg bg-glacier/14 border border-glacier/25 shrink-0">
+                <i data-lucide="snowflake" class="w-[18px] h-[18px] text-glacier-light"></i></span>
+              <div><p class="text-white font-semibold text-[15px] leading-tight">Cooling</p>
+                <p class="text-slate-400 text-[13.5px] mt-1 leading-snug">AC systems &amp; balanced airflow</p></div>
+            </li>
+            <li class="flex items-start gap-4">
+              <span class="mt-0.5 grid place-items-center w-9 h-9 rounded-lg bg-emerald-400/12 border border-emerald-400/25 shrink-0">
+                <i data-lucide="wind" class="w-[18px] h-[18px] text-emerald-300"></i></span>
+              <div><p class="text-white font-semibold text-[15px] leading-tight">Air Quality</p>
+                <p class="text-slate-400 text-[13.5px] mt-1 leading-snug">HRV, purification, humidity control</p></div>
+            </li>
+            <li class="flex items-start gap-4">
+              <span class="mt-0.5 grid place-items-center w-9 h-9 rounded-lg bg-sky-400/12 border border-sky-400/25 shrink-0">
+                <i data-lucide="droplets" class="w-[18px] h-[18px] text-sky-300"></i></span>
+              <div><p class="text-white font-semibold text-[15px] leading-tight">Hot Water</p>
+                <p class="text-slate-400 text-[13.5px] mt-1 leading-snug">Tank &amp; tankless solutions</p></div>
+            </li>
+          </ul>
+          <a href="#services" class="mt-7 flex items-center justify-between rounded-xl border border-white/10 bg-white/[.03] px-4 py-3.5 text-[14px] font-semibold text-white hover:bg-white/[.07] hover:border-glacier/35 transition-all duration-300 group/l">
+            <span>All 8 services</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 text-glacier transition-transform duration-300 group-hover/l:translate-x-1"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ SERVICES ═══════════════ -->
+<section id="services" class="relative bg-paper text-slate-950 py-24 lg:py-32">
+  <!-- perspective grid whisper -->
+  <div class="absolute inset-0 pointer-events-none opacity-[.05]"
+       style="background-image:linear-gradient(rgba(20,47,76,1) 1px,transparent 1px),linear-gradient(90deg,rgba(20,47,76,1) 1px,transparent 1px);background-size:64px 64px;mask-image:linear-gradient(180deg,#000,transparent 55%);-webkit-mask-image:linear-gradient(180deg,#000,transparent 55%);"></div>
+
+  <div class="relative mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
+
+    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-12">
+      <div class="max-w-2xl">
+        <div class="flex items-center gap-4 mb-6" data-reveal>
+          <span class="ordinal text-navy/35 text-[40px]">01</span>
+          <span class="h-px w-8 bg-navy/25"></span>
+          <span class="tech text-navy/70">What We Install &amp; Service</span>
+        </div>
+        <h2 class="disp text-navy text-[clamp(2.2rem,5.4vw,4rem)]" data-reveal style="--d:80ms">
+          EIGHT SYSTEMS.<br><span class="text-ember">ONE CONTRACTOR.</span>
+        </h2>
+        <p class="mt-6 text-[16.5px] leading-relaxed text-slate-600 max-w-xl" data-reveal style="--d:160ms">
+          Filter by what you need. Every system below is designed, installed and serviced by Avenue HVAC —
+          no subcontracted handoffs between trades.
+        </p>
+      </div>
+
+      <!-- Filter matrix -->
+      <div class="flex flex-wrap gap-2.5" role="group" aria-label="Filter services by category" data-reveal style="--d:220ms">
+        <button class="chip filter-btn rounded-full border border-navy/15 bg-white px-5 py-2.5 text-[13.5px] font-semibold text-navy/80 hover:border-navy/40" data-filter="all" aria-pressed="true">All&nbsp;<span class="font-mono text-[11px] opacity-55">08</span></button>
+        <button class="chip filter-btn rounded-full border border-navy/15 bg-white px-5 py-2.5 text-[13.5px] font-semibold text-navy/80 hover:border-navy/40" data-filter="heating" aria-pressed="false">Heating</button>
+        <button class="chip filter-btn rounded-full border border-navy/15 bg-white px-5 py-2.5 text-[13.5px] font-semibold text-navy/80 hover:border-navy/40" data-filter="cooling" aria-pressed="false">Cooling</button>
+        <button class="chip filter-btn rounded-full border border-navy/15 bg-white px-5 py-2.5 text-[13.5px] font-semibold text-navy/80 hover:border-navy/40" data-filter="air" aria-pressed="false">Air Quality</button>
+        <button class="chip filter-btn rounded-full border border-navy/15 bg-white px-5 py-2.5 text-[13.5px] font-semibold text-navy/80 hover:border-navy/40" data-filter="water" aria-pressed="false">Hot Water</button>
+      </div>
+    </div>
+
+    <p class="tech text-navy/45 mb-6" id="filter-count" aria-live="polite">Showing 8 of 8 systems</p>
+
+    <div id="svc-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+
+      <!-- 01 Furnace -->
+      <article class="svc group rounded-2xl border border-navy/10 bg-white p-6 flex flex-col" data-cat="heating"
+        style="--acc:#cd4c24;--acc-soft:rgba(205,76,36,.09);--acc-30:rgba(205,76,36,.35)">
+        <span class="rail"></span>
+        <div class="flex items-start justify-between mb-6">
+          <span class="ico grid place-items-center w-12 h-12 rounded-xl bg-ember/10 border border-ember/20">
+            <i data-lucide="flame" class="kin-heat w-[22px] h-[22px] text-ember"></i></span>
+          <span class="num font-mono text-[13px] font-bold text-navy/25">01</span>
+        </div>
+        <h3 class="disp-m text-[19px] text-navy leading-tight mb-2.5">Furnace Installation &amp; Service</h3>
+        <p class="text-[14px] leading-relaxed text-slate-600 mb-5">High-efficiency gas furnace replacement, tune-ups and diagnostics built for Ontario winters.</p>
+        <ul class="space-y-2 mb-6 text-[13.5px] text-slate-600">
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-3.5 h-3.5 mt-[3px] text-ember shrink-0"></i>High-efficiency replacements</li>
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-3.5 h-3.5 mt-[3px] text-ember shrink-0"></i>Seasonal tune-ups</li>
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-3.5 h-3.5 mt-[3px] text-ember shrink-0"></i>No-heat diagnostics</li>
+        </ul>
+        <a href="tel:5192225766" class="mt-auto inline-flex items-center gap-2 text-[13.5px] font-bold text-navy hover:text-ember transition-colors">
+          Book this service <i data-lucide="arrow-right" class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1"></i></a>
+      </article>
+
+      <!-- 02 AC -->
+      <article class="svc group rounded-2xl border border-navy/10 bg-white p-6 flex flex-col" data-cat="cooling"
+        style="--acc:#64aed5;--acc-soft:rgba(100,174,213,.12);--acc-30:rgba(100,174,213,.4)">
+        <span class="rail"></span>
+        <div class="flex items-start justify-between mb-6">
+          <span class="ico grid place-items-center w-12 h-12 rounded-xl bg-glacier/12 border border-glacier/25">
+            <i data-lucide="snowflake" class="kin-cool w-[22px] h-[22px] text-glacier-deep"></i></span>
+          <span class="num font-mono text-[13px] font-bold text-navy/25">02</span>
+        </div>
+        <h3 class="disp-m text-[19px] text-navy leading-tight mb-2.5">Air Conditioning Systems</h3>
+        <p class="text-[14px] leading-relaxed text-slate-600 mb-5">Properly sized central AC installs, refrigerant service and performance repairs.</p>
+        <ul class="space-y-2 mb-6 text-[13.5px] text-slate-600">
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-3.5 h-3.5 mt-[3px] text-glacier-deep shrink-0"></i>Central AC installation</li>
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-3.5 h-3.5 mt-[3px] text-glacier-deep shrink-0"></i>Load-matched sizing</li>
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-3.5 h-3.5 mt-[3px] text-glacier-deep shrink-0"></i>Refrigerant &amp; coil service</li>
+        </ul>
+        <a href="tel:5192225766" class="mt-auto inline-flex items-center gap-2 text-[13.5px] font-bold text-navy hover:text-glacier-deep transition-colors">
+          Book this service <i data-lucide="arrow-right" class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1"></i></a>
+      </article>
+
+      <!-- 03 Heat Pumps -->
+      <article class="svc group rounded-2xl border border-navy/10 bg-white p-6 flex flex-col" data-cat="heating cooling"
+        style="--acc:#7c9bb8;--acc-soft:rgba(124,155,184,.14);--acc-30:rgba(124,155,184,.45)">
+        <span class="rail" style="background:linear-gradient(180deg,#cd4c24,#64aed5)"></span>
+        <div class="flex items-start justify-between mb-6">
+          <span class="ico grid place-items-center w-12 h-12 rounded-xl border"
+                style="background:linear-gradient(135deg,rgba(205,76,36,.12),rgba(100,174,213,.14));border-color:rgba(100,174,213,.28)">
+            <i data-lucide="thermometer" class="kin-heat w-[22px] h-[22px] text-navy"></i></span>
+          <span class="num font-mono text-[13px] font-bold text-navy/25">03</span>
+        </div>
+        <h3 class="disp-m text-[19px] text-navy leading-tight mb-2.5">Cold-Climate Heat Pumps</h3>
+        <p class="text-[14px] leading-relaxed text-slate-600 mb-5">One system that heats and cools — engineered to hold output through Ontario cold snaps.</p>
+        <ul class="space-y-2 mb-6 text-[13.5px] text-slate-600">
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-3.5 h-3.5 mt-[3px] text-navy/70 shrink-0"></i>Heating &amp; cooling in one</li>
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-3.5 h-3.5 mt-[3px] text-navy/70 shrink-0"></i>Cold-climate rated units</li>
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-3.5 h-3.5 mt-[3px] text-navy/70 shrink-0"></i>Hybrid furnace pairing</li>
+        </ul>
+        <a href="tel:5192225766" class="mt-auto inline-flex items-center gap-2 text-[13.5px] font-bold text-navy hover:text-ember transition-colors">
+          Book this service <i data-lucide="arrow-right" class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1"></i></a>
+      </article>
+
+      <!-- 04 Hot Water -->
+      <article class="svc group rounded-2xl border border-navy/10 bg-white p-6 flex flex-col" data-cat="water"
+        style="--acc:#2f7fa8;--acc-soft:rgba(47,127,168,.11);--acc-30:rgba(47,127,168,.4)">
+        <span class="rail"></span>
+        <div class="flex items-start justify-between mb-6">
+          <span class="ico grid place-items-center w-12 h-12 rounded-xl bg-sky-500/10 border border-sky-500/20">
+            <i data-lucide="droplets" class="kin-water w-[22px] h-[22px] text-glacier-deep"></i></span>
+          <span class="num font-mono text-[13px] font-bold text-navy/25">04</span>
+        </div>
+        <h3 class="disp-m text-[19px] text-navy leading-tight mb-2.5">Hot Water Systems</h3>
+        <p class="text-[14px] leading-relaxed text-slate-600 mb-5">Tank and tankless solutions sized to real household demand — installed and serviced.</p>
+        <ul class="space-y-2 mb-6 text-[13.5px] text-slate-600">
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-3.5 h-3.5 mt-[3px] text-glacier-deep shrink-0"></i>Tankless on-demand</li>
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-3.5 h-3.5 mt-[3px] text-glacier-deep shrink-0"></i>Conventional tank swaps</li>
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-3.5 h-3.5 mt-[3px] text-glacier-deep shrink-0"></i>Recirculation &amp; venting</li>
+        </ul>
+        <a href="tel:5192225766" class="mt-auto inline-flex items-center gap-2 text-[13.5px] font-bold text-navy hover:text-glacier-deep transition-colors">
+          Book this service <i data-lucide="arrow-right" class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1"></i></a>
+      </article>
+
+      <!-- 05 HRV -->
+      <article class="svc group rounded-2xl border border-navy/10 bg-white p-6 flex flex-col" data-cat="air"
+        style="--acc:#10b981;--acc-soft:rgba(16,185,129,.10);--acc-30:rgba(16,185,129,.38)">
+        <span class="rail"></span>
+        <div class="flex items-start justify-between mb-6">
+          <span class="ico grid place-items-center w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
+            <i data-lucide="fan" class="kin-cool w-[22px] h-[22px] text-emerald-600"></i></span>
+          <span class="num font-mono text-[13px] font-bold text-navy/25">05</span>
+        </div>
+        <h3 class="disp-m text-[19px] text-navy leading-tight mb-2.5">Heat Recovery Ventilators</h3>
+        <p class="text-[14px] leading-relaxed text-slate-600 mb-5">Continuous fresh air without dumping the heat you already paid for.</p>
+        <ul class="space-y-2 mb-6 text-[13.5px] text-slate-600">
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-3.5 h-3.5 mt-[3px] text-emerald-600 shrink-0"></i>HRV supply &amp; install</li>
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-3.5 h-3.5 mt-[3px] text-emerald-600 shrink-0"></i>Airflow balancing</li>
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-3.5 h-3.5 mt-[3px] text-emerald-600 shrink-0"></i>Core &amp; filter servicing</li>
+        </ul>
+        <a href="tel:5192225766" class="mt-auto inline-flex items-center gap-2 text-[13.5px] font-bold text-navy hover:text-emerald-600 transition-colors">
+          Book this service <i data-lucide="arrow-right" class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1"></i></a>
+      </article>
+
+      <!-- 06 Air Purifiers -->
+      <article class="svc group rounded-2xl border border-navy/10 bg-white p-6 flex flex-col" data-cat="air"
+        style="--acc:#0ea5e9;--acc-soft:rgba(14,165,233,.10);--acc-30:rgba(14,165,233,.38)">
+        <span class="rail"></span>
+        <div class="flex items-start justify-between mb-6">
+          <span class="ico grid place-items-center w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20">
+            <i data-lucide="shield-check" class="kin-air w-[22px] h-[22px] text-cyan-600"></i></span>
+          <span class="num font-mono text-[13px] font-bold text-navy/25">06</span>
+        </div>
+        <h3 class="disp-m text-[19px] text-navy leading-tight mb-2.5">Whole-Home Air Purifiers</h3>
+        <p class="text-[14px] leading-relaxed text-slate-600 mb-5">Ducted filtration that treats every room, not just the one with a plug-in unit.</p>
+        <ul class="space-y-2 mb-6 text-[13.5px] text-slate-600">
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-3.5 h-3.5 mt-[3px] text-cyan-600 shrink-0"></i>In-duct purification</li>
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-3.5 h-3.5 mt-[3px] text-cyan-600 shrink-0"></i>High-MERV media cabinets</li>
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-3.5 h-3.5 mt-[3px] text-cyan-600 shrink-0"></i>Allergen &amp; dust control</li>
+        </ul>
+        <a href="tel:5192225766" class="mt-auto inline-flex items-center gap-2 text-[13.5px] font-bold text-navy hover:text-cyan-600 transition-colors">
+          Book this service <i data-lucide="arrow-right" class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1"></i></a>
+      </article>
+
+      <!-- 07 Humidifiers -->
+      <article class="svc group rounded-2xl border border-navy/10 bg-white p-6 flex flex-col" data-cat="air water"
+        style="--acc:#38bdf8;--acc-soft:rgba(56,189,248,.11);--acc-30:rgba(56,189,248,.4)">
+        <span class="rail"></span>
+        <div class="flex items-start justify-between mb-6">
+          <span class="ico grid place-items-center w-12 h-12 rounded-xl bg-sky-400/12 border border-sky-400/25">
+            <i data-lucide="waves" class="kin-water w-[22px] h-[22px] text-sky-600"></i></span>
+          <span class="num font-mono text-[13px] font-bold text-navy/25">07</span>
+        </div>
+        <h3 class="disp-m text-[19px] text-navy leading-tight mb-2.5">Advanced Humidifiers</h3>
+        <p class="text-[14px] leading-relaxed text-slate-600 mb-5">Dial in winter humidity — protect hardwood, millwork and your sinuses.</p>
+        <ul class="space-y-2 mb-6 text-[13.5px] text-slate-600">
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-3.5 h-3.5 mt-[3px] text-sky-600 shrink-0"></i>Bypass &amp; steam units</li>
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-3.5 h-3.5 mt-[3px] text-sky-600 shrink-0"></i>Automatic humidistat control</li>
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-3.5 h-3.5 mt-[3px] text-sky-600 shrink-0"></i>Annual pad replacement</li>
+        </ul>
+        <a href="tel:5192225766" class="mt-auto inline-flex items-center gap-2 text-[13.5px] font-bold text-navy hover:text-sky-600 transition-colors">
+          Book this service <i data-lucide="arrow-right" class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1"></i></a>
+      </article>
+
+      <!-- 08 Ductwork -->
+      <article class="svc group rounded-2xl border border-navy/10 bg-white p-6 flex flex-col" data-cat="air heating cooling"
+        style="--acc:#142f4c;--acc-soft:rgba(20,47,76,.09);--acc-30:rgba(20,47,76,.4)">
+        <span class="rail"></span>
+        <div class="flex items-start justify-between mb-6">
+          <span class="ico grid place-items-center w-12 h-12 rounded-xl bg-navy/8 border border-navy/18">
+            <i data-lucide="air-vent" class="kin-air w-[22px] h-[22px] text-navy"></i></span>
+          <span class="num font-mono text-[13px] font-bold text-navy/25">08</span>
+        </div>
+        <h3 class="disp-m text-[19px] text-navy leading-tight mb-2.5">Custom Ductwork Design</h3>
+        <p class="text-[14px] leading-relaxed text-slate-600 mb-5">Fabrication and modifications that fix the rooms your system never reached.</p>
+        <ul class="space-y-2 mb-6 text-[13.5px] text-slate-600">
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-3.5 h-3.5 mt-[3px] text-navy/70 shrink-0"></i>Custom sheet metal fabrication</li>
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-3.5 h-3.5 mt-[3px] text-navy/70 shrink-0"></i>Renovation &amp; addition runs</li>
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-3.5 h-3.5 mt-[3px] text-navy/70 shrink-0"></i>Return-air corrections</li>
+        </ul>
+        <a href="tel:5192225766" class="mt-auto inline-flex items-center gap-2 text-[13.5px] font-bold text-navy hover:text-ember transition-colors">
+          Book this service <i data-lucide="arrow-right" class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1"></i></a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ COVERAGE ═══════════════ -->
+<section id="coverage" class="relative overflow-hidden py-24 lg:py-32"
+         style="background:linear-gradient(180deg,#0a1728,#122b47 55%,#0a1728);">
+  <div class="bloom bloom-glacier w-[44vw] h-[44vw] max-w-[560px] max-h-[560px] left-[-8vw] top-[10%] opacity-70"></div>
+  <div class="bloom bloom-ember w-[36vw] h-[36vw] max-w-[460px] max-h-[460px] right-[-6vw] bottom-[4%] opacity-60"></div>
+
+  <!-- airflow streamlines -->
+  <svg class="flow absolute inset-0 w-full h-full pointer-events-none opacity-[.28]" aria-hidden="true" preserveAspectRatio="none" viewBox="0 0 1200 600">
+    <path d="M-50 120 C 300 60, 600 190, 1250 110" fill="none" stroke="#64aed5" stroke-width="1.2" style="animation-delay:0s"/>
+    <path d="M-50 250 C 350 320, 700 140, 1250 250" fill="none" stroke="#a8d8ef" stroke-width="1" style="animation-delay:-.7s"/>
+    <path d="M-50 400 C 280 340, 640 470, 1250 380" fill="none" stroke="#cd4c24" stroke-width="1.1" style="animation-delay:-1.3s"/>
+    <path d="M-50 520 C 400 590, 760 430, 1250 520" fill="none" stroke="#64aed5" stroke-width="1" style="animation-delay:-1.9s"/>
+  </svg>
+
+  <div class="relative mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
+    <div class="grid lg:grid-cols-12 gap-12 items-center">
+
+      <div class="lg:col-span-5">
+        <div class="flex items-center gap-4 mb-6" data-reveal>
+          <span class="ordinal text-white/25 text-[40px]">02</span>
+          <span class="h-px w-8 bg-white/20"></span>
+          <span class="tech text-glacier-light/80">Service Area</span>
+        </div>
+        <h2 class="disp text-white text-[clamp(2.1rem,5.2vw,3.8rem)]" data-reveal style="--d:80ms">
+          WE RUN THE<br><span class="text-glacier">WATERLOO REGION.</span>
+        </h2>
+        <p class="mt-6 text-[16.5px] leading-relaxed text-slate-300/85 max-w-md" data-reveal style="--d:160ms">
+          Based in the tri-cities and working the surrounding townships. If you're in the region, we cover you.
+        </p>
+        <a href="tel:5192225766" class="btn btn-ember mt-9 inline-flex items-center gap-3 rounded-full px-7 py-4 text-white font-bold text-[15px]" data-reveal style="--d:240ms">
+          <i data-lucide="phone-call" class="w-[17px] h-[17px]"></i> Call Us Directly
+        </a>
+      </div>
+
+      <div class="lg:col-span-7">
+        <div class="glass rounded-2xl p-7 lg:p-9" data-reveal style="--d:180ms">
+          <div class="flex items-center gap-2.5 mb-7">
+            <i data-lucide="map-pin" class="w-4 h-4 text-glacier"></i>
+            <span class="tech text-slate-400">Cities &amp; Communities Served</span>
+          </div>
+
+          <div class="grid sm:grid-cols-3 gap-3 mb-7">
+            <div class="rounded-xl border border-ember/30 bg-ember/10 px-4 py-5 text-center">
+              <p class="disp-m text-[20px] text-white">Cambridge</p><p class="tech text-ember-light/80 mt-1.5">Primary</p></div>
+            <div class="rounded-xl border border-glacier/30 bg-glacier/10 px-4 py-5 text-center">
+              <p class="disp-m text-[20px] text-white">Kitchener</p><p class="tech text-glacier-light/80 mt-1.5">Primary</p></div>
+            <div class="rounded-xl border border-white/18 bg-white/[.06] px-4 py-5 text-center">
+              <p class="disp-m text-[20px] text-white">Waterloo</p><p class="tech text-slate-400 mt-1.5">Primary</p></div>
+          </div>
+
+          <p class="tech text-slate-500 mb-4">Also Serving</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="badge rounded-full border border-white/12 bg-white/[.04] px-4 py-2 text-[13px] text-slate-300">Guelph</span>
+            <span class="badge rounded-full border border-white/12 bg-white/[.04] px-4 py-2 text-[13px] text-slate-300">Breslau</span>
+            <span class="badge rounded-full border border-white/12 bg-white/[.04] px-4 py-2 text-[13px] text-slate-300">Elmira</span>
+            <span class="badge rounded-full border border-white/12 bg-white/[.04] px-4 py-2 text-[13px] text-slate-300">St. Jacobs</span>
+            <span class="badge rounded-full border border-white/12 bg-white/[.04] px-4 py-2 text-[13px] text-slate-300">Ayr</span>
+            <span class="badge rounded-full border border-white/12 bg-white/[.04] px-4 py-2 text-[13px] text-slate-300">Paris</span>
+            <span class="badge rounded-full border border-white/12 bg-white/[.04] px-4 py-2 text-[13px] text-slate-300">New Hamburg</span>
+            <span class="badge rounded-full border border-white/12 bg-white/[.04] px-4 py-2 text-[13px] text-slate-300">Baden</span>
+            <span class="badge rounded-full border border-white/12 bg-white/[.04] px-4 py-2 text-[13px] text-slate-300">Wellesley</span>
+            <span class="badge rounded-full border border-white/12 bg-white/[.04] px-4 py-2 text-[13px] text-slate-300">Woolwich</span>
+            <span class="badge rounded-full border border-white/12 bg-white/[.04] px-4 py-2 text-[13px] text-slate-300">Puslinch</span>
+            <span class="badge rounded-full border border-glacier/25 bg-glacier/8 px-4 py-2 text-[13px] text-glacier-light">+ surrounding Ontario</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ BOOK ═══════════════ -->
+<section id="book" class="relative bg-paper text-slate-950 py-24 lg:py-32 overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none opacity-[.05]"
+       style="background-image:linear-gradient(rgba(20,47,76,1) 1px,transparent 1px),linear-gradient(90deg,rgba(20,47,76,1) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(70% 60% at 50% 40%,#000,transparent);-webkit-mask-image:radial-gradient(70% 60% at 50% 40%,#000,transparent);"></div>
+
+  <div class="relative mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
+    <div class="text-center max-w-3xl mx-auto mb-14">
+      <div class="flex items-center justify-center gap-4 mb-6" data-reveal>
+        <span class="ordinal text-navy/35 text-[40px]">03</span>
+        <span class="h-px w-8 bg-navy/25"></span>
+        <span class="tech text-navy/70">Book Service Now</span>
+      </div>
+      <h2 class="disp text-navy text-[clamp(2.2rem,5.8vw,4.2rem)]" data-reveal style="--d:80ms">
+        PICK UP THE PHONE.<br><span class="text-ember">WE'LL PICK UP THE JOB.</span>
+      </h2>
+      <p class="mt-6 text-[17px] leading-relaxed text-slate-600" data-reveal style="--d:160ms">
+        Two direct lines into Avenue HVAC. Call for the fastest route to a booking, or email your details.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-5 max-w-5xl mx-auto">
+
+      <!-- Phone block -->
+      <div class="group relative overflow-hidden rounded-3xl p-8 lg:p-10 text-white"
+           style="background:linear-gradient(150deg,#cd4c24,#a63a1a 55%,#8a2f14);
+                  box-shadow:0 34px 70px -34px rgba(205,76,36,.85);" data-reveal style="--d:200ms">
+        <div class="absolute -right-16 -top-16 w-56 h-56 rounded-full bg-white/10 blur-2xl transition-transform duration-700 group-hover:scale-125"></div>
+        <div class="relative">
+          <div class="flex items-center justify-between mb-8">
+            <span class="grid place-items-center w-14 h-14 rounded-2xl bg-white/18 border border-white/25 backdrop-blur-sm">
+              <i data-lucide="phone-call" class="w-6 h-6"></i></span>
+            <span class="tech text-white/70">Fastest</span>
+          </div>
+          <p class="tech text-white/75 mb-3">Call to Book</p>
+          <a href="tel:5192225766" class="disp-x block text-[clamp(1.9rem,5.2vw,2.9rem)] leading-none hover:opacity-90 transition-opacity">519-222-5766</a>
+          <p class="mt-5 text-[15px] text-white/80 leading-relaxed">Tell us the system, the symptom and the postal code — we'll get you on the schedule.</p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="tel:5192225766" class="btn inline-flex items-center gap-2.5 rounded-full bg-white px-6 py-3.5 text-[14.5px] font-bold text-[#a63a1a] shadow-lg">
+              <i data-lucide="phone" class="w-4 h-4"></i> Call Us Directly</a>
+            <button type="button" data-copy="519-222-5766"
+              class="copy-btn inline-flex items-center gap-2.5 rounded-full border border-white/30 bg-white/10 px-5 py-3.5 text-[14.5px] font-semibold text-white hover:bg-white/20 transition-colors">
+              <i data-lucide="copy" class="w-4 h-4"></i> <span class="copy-label">Copy number</span></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Email block -->
+      <div class="group relative overflow-hidden rounded-3xl p-8 lg:p-10 text-white"
+           style="background:linear-gradient(150deg,#1d4269,#142f4c 55%,#0a1728);
+                  box-shadow:0 34px 70px -34px rgba(20,47,76,.9);" data-reveal style="--d:280ms">
+        <div class="absolute -right-16 -top-16 w-56 h-56 rounded-full bg-glacier/25 blur-2xl transition-transform duration-700 group-hover:scale-125"></div>
+        <div class="relative">
+          <div class="flex items-center justify-between mb-8">
+            <span class="grid place-items-center w-14 h-14 rounded-2xl bg-glacier/20 border border-glacier/35 backdrop-blur-sm">
+              <i data-lucide="mail" class="w-6 h-6 text-glacier-light"></i></span>
+            <span class="tech text-glacier-light/70">On Record</span>
+          </div>
+          <p class="tech text-slate-400 mb-3">Send Us an Email</p>
+          <a href="mailto:avenuehvac@gmail.com?subject=Service%20Request%20—%20Avenue%20HVAC"
+             class="disp-m block text-[clamp(1.25rem,3.6vw,1.85rem)] leading-tight break-all hover:text-glacier-light transition-colors">avenuehvac@gmail.com</a>
+          <p class="mt-5 text-[15px] text-slate-300/85 leading-relaxed">Include photos of the unit and your model number — it speeds the quote up considerably.</p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="mailto:avenuehvac@gmail.com?subject=Service%20Request%20—%20Avenue%20HVAC"
+               class="btn inline-flex items-center gap-2.5 rounded-full bg-glacier px-6 py-3.5 text-[14.5px] font-bold text-navy-900 shadow-lg">
+              <i data-lucide="send" class="w-4 h-4"></i> Send Us an Email</a>
+            <button type="button" data-copy="avenuehvac@gmail.com"
+              class="copy-btn inline-flex items-center gap-2.5 rounded-full border border-white/22 bg-white/[.07] px-5 py-3.5 text-[14.5px] font-semibold text-white hover:bg-white/15 transition-colors">
+              <i data-lucide="copy" class="w-4 h-4"></i> <span class="copy-label">Copy email</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Service strip -->
+    <div class="mt-12 max-w-5xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-px rounded-2xl overflow-hidden border border-navy/10 bg-navy/10" data-reveal style="--d:340ms">
+      <div class="bg-white px-6 py-7 text-center"><i data-lucide="home" class="w-5 h-5 mx-auto text-ember mb-3"></i>
+        <p class="disp-m text-[15px] text-navy">Residential</p><p class="text-[13px] text-slate-500 mt-1">Homes &amp; renovations</p></div>
+      <div class="bg-white px-6 py-7 text-center"><i data-lucide="building-2" class="w-5 h-5 mx-auto text-glacier-deep mb-3"></i>
+        <p class="disp-m text-[15px] text-navy">Commercial</p><p class="text-[13px] text-slate-500 mt-1">Shops &amp; light industrial</p></div>
+      <div class="bg-white px-6 py-7 text-center"><i data-lucide="wrench" class="w-5 h-5 mx-auto text-navy mb-3"></i>
+        <p class="disp-m text-[15px] text-navy">Install &amp; Repair</p><p class="text-[13px] text-slate-500 mt-1">New systems or fixes</p></div>
+      <div class="bg-white px-6 py-7 text-center"><i data-lucide="layers" class="w-5 h-5 mx-auto text-emerald-600 mb-3"></i>
+        <p class="disp-m text-[15px] text-navy">Full Stack</p><p class="text-[13px] text-slate-500 mt-1">Heat, cool, air, water</p></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer class="relative bg-navy-900 pt-16 pb-28 lg:pb-12 overflow-hidden">
+  <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-glacier/40 to-transparent"></div>
+  <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
+    <div class="grid md:grid-cols-12 gap-10 pb-12 border-b border-white/8">
+
+      <div class="md:col-span-5">
+        <div class="flex items-center gap-3.5 mb-5">
+          <span class="brandmark grid place-items-center shrink-0 rounded-xl p-1.5"><img src="mark.png" alt="" width="246" height="238" class="h-12 w-auto" /></span>
+          <div><p class="disp text-[19px] text-white">AVENUE HVAC</p>
+            <p class="tech text-glacier-light/55 mt-1">Heating · Cooling · Air</p></div>
+        </div>
+        <p class="text-[14.5px] leading-relaxed text-slate-400 max-w-sm">
+          Complete residential and commercial climate systems for Cambridge, Kitchener, Waterloo and the surrounding Ontario region.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="tel:5192225766" class="inline-flex items-center gap-2 rounded-full border border-ember/35 bg-ember/10 px-4 py-2.5 text-[13.5px] font-semibold text-ember-light hover:bg-ember/20 transition-colors">
+            <i data-lucide="phone" class="w-3.5 h-3.5"></i> 519-222-5766</a>
+          <a href="mailto:avenuehvac@gmail.com" class="inline-flex items-center gap-2 rounded-full border border-glacier/30 bg-glacier/10 px-4 py-2.5 text-[13.5px] font-semibold text-glacier-light hover:bg-glacier/20 transition-colors">
+            <i data-lucide="mail" class="w-3.5 h-3.5"></i> avenuehvac@gmail.com</a>
+        </div>
+      </div>
+
+      <div class="md:col-span-3">
+        <p class="tech text-slate-500 mb-5">Services</p>
+        <ul class="space-y-2.5 text-[14px] text-slate-400">
+          <li><a href="#services" class="hover:text-white transition-colors">Furnaces</a></li>
+          <li><a href="#services" class="hover:text-white transition-colors">Air Conditioning</a></li>
+          <li><a href="#services" class="hover:text-white transition-colors">Heat Pumps</a></li>
+          <li><a href="#services" class="hover:text-white transition-colors">Hot Water Systems</a></li>
+          <li><a href="#services" class="hover:text-white transition-colors">HRV &amp; Ventilation</a></li>
+          <li><a href="#services" class="hover:text-white transition-colors">Air Purifiers</a></li>
+          <li><a href="#services" class="hover:text-white transition-colors">Humidifiers</a></li>
+          <li><a href="#services" class="hover:text-white transition-colors">Custom Ductwork</a></li>
+        </ul>
+      </div>
+
+      <div class="md:col-span-4">
+        <p class="tech text-slate-500 mb-5">Service Area</p>
+        <p class="text-[14px] leading-[2.1] text-slate-400">
+          Cambridge · Kitchener · Waterloo · Guelph · Breslau · Elmira · St. Jacobs · Ayr · Paris · New Hamburg · Baden · Wellesley · Woolwich · Puslinch
+        </p>
+        <nav class="mt-6 flex gap-5 text-[13.5px]" aria-label="Footer">
+          <a href="#services" class="navlink text-slate-300 hover:text-white transition-colors">Services</a>
+          <a href="#coverage" class="navlink text-slate-300 hover:text-white transition-colors">Coverage</a>
+          <a href="#book" class="navlink text-slate-300 hover:text-white transition-colors">Book</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="pt-7 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-[13px] text-slate-500">© <span id="year">2026</span> Avenue HVAC. All rights reserved.</p>
+      <p class="tech text-slate-600">Cambridge · Kitchener · Waterloo, ON</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════ MOBILE QUICK-CONTACT BAR ═══════════════ -->
+<div id="quickbar" class="lg:hidden fixed inset-x-0 bottom-0 z-50 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+  <div class="glass rounded-2xl p-2 flex gap-2 shadow-[0_-10px_40px_-12px_rgba(0,0,0,.7)]">
+    <a href="tel:5192225766" class="btn btn-ember flex-1 flex items-center justify-center gap-2.5 rounded-xl py-4 text-white font-bold text-[15px]">
+      <i data-lucide="phone-call" class="w-[18px] h-[18px]"></i> Call Now
+    </a>
+    <a href="mailto:avenuehvac@gmail.com?subject=Service%20Request%20—%20Avenue%20HVAC"
+       class="flex-1 flex items-center justify-center gap-2.5 rounded-xl py-4 border border-glacier/35 bg-glacier/12 text-glacier-light font-bold text-[15px]">
+      <i data-lucide="mail" class="w-[18px] h-[18px]"></i> Email
+    </a>
+  </div>
+</div>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+(function () {
+  'use strict';
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── Icons ──────────────────────────────────────────────────────── */
+  if (window.lucide) lucide.createIcons();
+
+  /* ── Year ───────────────────────────────────────────────────────── */
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ── Scroll progress + header condense ──────────────────────────── */
+  const bar = document.getElementById('progress');
+  const hdr = document.getElementById('site-header');
+  let ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const y = window.scrollY;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? y / max : 0) + ')';
+      hdr.classList.toggle('shadow-[0_10px_40px_-18px_rgba(0,0,0,.8)]', y > 24);
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ── Mobile menu ────────────────────────────────────────────────── */
+  const mBtn = document.getElementById('menu-btn');
+  const mMenu = document.getElementById('mobile-menu');
+  const mIcon = document.getElementById('menu-icon');
+  function setMenu(open) {
+    mBtn.setAttribute('aria-expanded', String(open));
+    mBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    mMenu.style.maxHeight = open ? mMenu.scrollHeight + 'px' : '0px';
+    mIcon.setAttribute('data-lucide', open ? 'x' : 'menu');
+    if (window.lucide) lucide.createIcons();
+  }
+  mBtn.addEventListener('click', () => setMenu(mBtn.getAttribute('aria-expanded') !== 'true'));
+  document.querySelectorAll('.mob-link').forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+  /* ── Scroll reveals ─────────────────────────────────────────────── */
+  const revealEls = Array.from(document.querySelectorAll('[data-reveal]'));
+  const revealAll = () => revealEls.forEach(el => el.classList.add('is-in'));
+
+  if ('IntersectionObserver' in window && !reduced) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    revealEls.forEach(el => io.observe(el));
+
+    // Tailwind's CDN build and the web fonts land asynchronously, which reflows
+    // the page after the observer's first pass. Re-check anything still hidden
+    // once everything has settled, then hard-reveal as a last resort so content
+    // can never be stranded at opacity 0.
+    const sweep = () => {
+      const vh = window.innerHeight;
+      revealEls.forEach(el => {
+        if (el.classList.contains('is-in')) return;
+        const r = el.getBoundingClientRect();
+        if (r.top < vh && r.bottom > 0) { el.classList.add('is-in'); io.unobserve(el); }
+      });
+    };
+    window.addEventListener('load', () => { sweep(); setTimeout(sweep, 400); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(sweep);
+    setTimeout(revealAll, 4000);
+  } else {
+    revealAll();
+  }
+
+  /* ── Service filter matrix ──────────────────────────────────────── */
+  const cards = Array.from(document.querySelectorAll('.svc'));
+  const chips = Array.from(document.querySelectorAll('.filter-btn'));
+  const countEl = document.getElementById('filter-count');
+
+  function applyFilter(key) {
+    let shown = 0, delay = 0;
+    cards.forEach(card => {
+      const cats = (card.dataset.cat || '').split(/\s+/);
+      const match = key === 'all' || cats.includes(key);
+      if (match) {
+        shown++;
+        if (card.style.display === 'none') {
+          card.style.display = '';
+          card.classList.add('is-out');
+          const d = delay;
+          requestAnimationFrame(() => setTimeout(() => card.classList.remove('is-out'), d));
+          delay += 45;
+        } else {
+          card.classList.remove('is-out');
+        }
+      } else if (card.style.display !== 'none') {
+        card.classList.add('is-out');
+        setTimeout(() => { if (card.classList.contains('is-out')) card.style.display = 'none'; }, 300);
+      }
+    });
+    countEl.textContent = 'Showing ' + shown + ' of 8 systems';
+  }
+
+  chips.forEach(chip => chip.addEventListener('click', () => {
+    chips.forEach(c => c.setAttribute('aria-pressed', String(c === chip)));
+    applyFilter(chip.dataset.filter);
+  }));
+
+  /* ── Quick copy ─────────────────────────────────────────────────── */
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    const label = btn.querySelector('.copy-label');
+    const original = label.textContent;
+    btn.addEventListener('click', async () => {
+      const text = btn.dataset.copy;
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          const ta = document.createElement('textarea');
+          ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+          document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove();
+        }
+        label.textContent = 'Copied';
+        btn.classList.add('copied');
+        const ic = btn.querySelector('[data-lucide]');
+        if (ic) { ic.setAttribute('data-lucide', 'check'); if (window.lucide) lucide.createIcons(); }
+      } catch (e) {
+        label.textContent = text;
+      }
+      setTimeout(() => {
+        label.textContent = original;
+        btn.classList.remove('copied');
+        const ic2 = btn.querySelector('[data-lucide]');
+        if (ic2) { ic2.setAttribute('data-lucide', 'copy'); if (window.lucide) lucide.createIcons(); }
+      }, 1900);
+    });
+  });
+
+  /* ── Mobile quick-contact bar (hides over the booking section) ──── */
+  const qb = document.getElementById('quickbar');
+  const bookSection = document.getElementById('book');
+  setTimeout(() => qb.classList.add('up'), 900);
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((entries) => {
+      entries.forEach(e => qb.classList.toggle('up', !e.isIntersecting));
+    }, { threshold: 0.25 }).observe(bookSection);
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
+     THE AVENUE — perspective road receding to a vanishing point.
+     Mirrors the logo mark: a road that narrows to the horizon,
+     with lane dashes streaming toward the viewer.
+     ═══════════════════════════════════════════════════════════════ */
+  const cvs = document.getElementById('avenue');
+  if (cvs && cvs.getContext) {
+    const ctx = cvs.getContext('2d');
+    // Z_NEAR sits at the bottom edge of the canvas; f and ROAD are solved from
+    // the viewport so the road always meets the bottom corners, at any aspect.
+    const Z_NEAR = 2.2, Z_FAR = Z_NEAR * 42;
+    const DASH_LEN = Z_NEAR * 0.42, DASH_GAP = Z_NEAR * 1.05;
+    const RUNG_GAP = Z_NEAR * 0.95, SPEED = Z_NEAR * 1.55; // world units / second
+    let W = 0, H = 0, dpr = 1, vpX = 0, vpY = 0, f = 0, ROAD = 1;
+
+    function resize() {
+      const r = cvs.getBoundingClientRect();
+      W = Math.max(1, r.width); H = Math.max(1, r.height);
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      cvs.width = Math.round(W * dpr); cvs.height = Math.round(H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      // Vanishing point sits right of centre so the avenue runs clear of the headline.
+      vpX = W * (W < 820 ? 0.5 : 0.615);
+      vpY = H * 0.13;                       // horizon
+      f = (H - vpY) * Z_NEAR;               // => py(Z_NEAR) === H
+      ROAD = (W * 0.38) * Z_NEAR / f;       // => road half-width at the bottom === 38% of W
+    }
+
+    const px = (x, z) => vpX + (x * f) / z;
+    const py = (z) => vpY + f / z;
+    const fade = (z) => Math.max(0, Math.min(1, 1 - (z - Z_NEAR) / (Z_FAR * 0.55)));
+
+    function draw(t) {
+      ctx.clearRect(0, 0, W, H);
+      const yN = py(Z_NEAR), yF = py(Z_FAR);
+      const scroll = reduced ? 0 : (t / 1000) * SPEED;
+
+      // ── Road surface ──────────────────────────────────────────────
+      const surf = ctx.createLinearGradient(0, yF, 0, yN);
+      surf.addColorStop(0, 'rgba(22,54,86,0)');
+      surf.addColorStop(0.12, 'rgba(18,46,75,.55)');
+      surf.addColorStop(0.5, 'rgba(10,26,44,.9)');
+      surf.addColorStop(1, 'rgba(5,13,24,1)');
+      ctx.beginPath();
+      ctx.moveTo(px(-ROAD, Z_NEAR), yN);
+      ctx.lineTo(px(ROAD, Z_NEAR), yN);
+      ctx.lineTo(px(ROAD, Z_FAR), yF);
+      ctx.lineTo(px(-ROAD, Z_FAR), yF);
+      ctx.closePath();
+      ctx.fillStyle = surf; ctx.fill();
+
+      // Thermal sheen across the asphalt: flame side warm, snowflake side cool.
+      // This is what makes the surface read as a road rather than dark-on-dark.
+      ctx.save();
+      ctx.clip();
+      const sheen = ctx.createLinearGradient(px(-ROAD, Z_NEAR), 0, px(ROAD, Z_NEAR), 0);
+      sheen.addColorStop(0, 'rgba(205,76,36,.20)');
+      sheen.addColorStop(0.38, 'rgba(205,76,36,.05)');
+      sheen.addColorStop(0.62, 'rgba(100,174,213,.05)');
+      sheen.addColorStop(1, 'rgba(100,174,213,.22)');
+      ctx.fillStyle = sheen;
+      ctx.fillRect(0, yF, W, H - yF);
+      ctx.restore();
+
+      // ── Ground rungs sweeping past, road-wide and beyond ──────────
+      ctx.lineWidth = 1;
+      const rungShift = scroll % RUNG_GAP;
+      for (let i = 0; i < 90; i++) {
+        const z = Z_NEAR + i * RUNG_GAP - rungShift;
+        if (z <= Z_NEAR) continue;
+        if (z > Z_FAR) break;
+        const a = fade(z) * 0.17;
+        if (a <= 0.003) continue;
+        const y = py(z);
+        ctx.strokeStyle = 'rgba(100,174,213,' + a.toFixed(3) + ')';
+        ctx.beginPath(); ctx.moveTo(px(-ROAD * 6, z), y); ctx.lineTo(px(ROAD * 6, z), y); ctx.stroke();
+      }
+
+      // ── Shoulder rails: ember on the left, glacier on the right ───
+      [[-ROAD * 3.6, '205,76,36'], [-ROAD * 1.9, '205,76,36'],
+       [ROAD * 1.9, '100,174,213'], [ROAD * 3.6, '100,174,213']].forEach(([x, tint]) => {
+        const g = ctx.createLinearGradient(0, yF, 0, yN);
+        g.addColorStop(0, 'rgba(' + tint + ',0)');
+        g.addColorStop(1, 'rgba(' + tint + ',0.26)');
+        ctx.strokeStyle = g; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(px(x, Z_FAR), yF); ctx.lineTo(px(x, Z_NEAR), yN); ctx.stroke();
+      });
+
+      // ── Road edges: flame side / snowflake side ───────────────────
+      [[-ROAD, '242,112,58'], [ROAD, '168,216,239']].forEach(([x, tint]) => {
+        const g = ctx.createLinearGradient(0, yF, 0, yN);
+        g.addColorStop(0, 'rgba(' + tint + ',0)');
+        g.addColorStop(0.4, 'rgba(' + tint + ',0.4)');
+        g.addColorStop(1, 'rgba(' + tint + ',0.95)');
+        ctx.save();
+        ctx.strokeStyle = g; ctx.lineWidth = 2.2;
+        ctx.shadowColor = 'rgba(' + tint + ',.55)'; ctx.shadowBlur = 12;
+        ctx.beginPath(); ctx.moveTo(px(x, Z_FAR), yF); ctx.lineTo(px(x, Z_NEAR), yN); ctx.stroke();
+        ctx.restore();
+      });
+
+      // ── Centre lane dashes streaming toward the viewer ────────────
+      const dashHalf = ROAD * 0.011;
+      const dashShift = scroll % DASH_GAP;
+      for (let i = 0; i < 90; i++) {
+        const zB = Z_NEAR + i * DASH_GAP - dashShift;   // far end of this dash
+        const zA = zB + DASH_LEN;
+        if (zA <= Z_NEAR) continue;
+        if (zB > Z_FAR) break;
+        const near = Math.max(zB, Z_NEAR);
+        const a = fade(near) * 0.9;
+        if (a <= 0.004) continue;
+        ctx.beginPath();
+        ctx.moveTo(px(-dashHalf, near), py(near));
+        ctx.lineTo(px(dashHalf, near), py(near));
+        ctx.lineTo(px(dashHalf, zA), py(zA));
+        ctx.lineTo(px(-dashHalf, zA), py(zA));
+        ctx.closePath();
+        ctx.fillStyle = 'rgba(255,255,255,' + a.toFixed(3) + ')';
+        ctx.fill();
+      }
+
+      // ── Horizon line + vanishing-point bloom ──────────────────────
+      const hz = ctx.createLinearGradient(0, 0, W, 0);
+      hz.addColorStop(0, 'rgba(242,112,58,0)');
+      hz.addColorStop(0.32, 'rgba(242,112,58,.35)');
+      hz.addColorStop(0.5, 'rgba(230,240,248,.55)');
+      hz.addColorStop(0.68, 'rgba(168,216,239,.4)');
+      hz.addColorStop(1, 'rgba(100,174,213,0)');
+      ctx.strokeStyle = hz; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(0, vpY); ctx.lineTo(W, vpY); ctx.stroke();
+
+      const rad = Math.max(120, H * 0.42);
+      const bloom = ctx.createRadialGradient(vpX, vpY, 0, vpX, vpY, rad);
+      bloom.addColorStop(0, 'rgba(206,229,244,.34)');
+      bloom.addColorStop(0.3, 'rgba(100,174,213,.13)');
+      bloom.addColorStop(1, 'rgba(10,23,40,0)');
+      ctx.fillStyle = bloom;
+      ctx.beginPath(); ctx.arc(vpX, vpY, rad, 0, Math.PI * 2); ctx.fill();
+    }
+
+    let raf = null, running = false;
+    function loop(ts) { draw(ts); raf = requestAnimationFrame(loop); }
+    function start() { if (!running && !reduced) { running = true; raf = requestAnimationFrame(loop); } }
+    function stop() { if (running) { running = false; cancelAnimationFrame(raf); } }
+
+    let rt;
+    window.addEventListener('resize', () => {
+      clearTimeout(rt);
+      rt = setTimeout(() => { resize(); draw(performance.now()); }, 120);
+    });
+
+    resize();
+    draw(0);
+    if (reduced) {
+      draw(0);
+    } else {
+      // Only animate while the hero is on screen — keeps the rest of the page at 60fps
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver((entries) => {
+          entries.forEach(e => e.isIntersecting ? start() : stop());
+        }, { threshold: 0 }).observe(cvs);
+      } else { start(); }
+      document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
+    }
+  }
+})();
+</script>
+</body>
+</html>
